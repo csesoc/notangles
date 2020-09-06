@@ -55,7 +55,7 @@ const App: FunctionComponent = () => {
   }, [])
 
   const handleSelectCourse = async (e: CourseOption) => {
-    const selectedCourseClasses = await getCourseInfo('2020', 'T1', e.value)
+    const selectedCourseClasses = await getCourseInfo('2020', 'T3', e.value)
 
     if (selectedCourseClasses) {
       setSelectedCourses([...selectedCourses, selectedCourseClasses])
@@ -90,7 +90,7 @@ const App: FunctionComponent = () => {
   }
 
   const fetchClassesList = async () => {
-    const coursesList = await getCoursesList('2020', 'T1')
+    const coursesList = await getCoursesList('2020', 'T3')
     if (coursesList) {
       setCoursesList(coursesList)
     }
