@@ -13,6 +13,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Link from '@material-ui/core/Link';
 import About from './About';
 import DisplayOptions from './DisplayOptions';
+import Switch from '@material-ui/core/Switch';
 
 import CSESocLogo from '../assets/notangles_one_n_with_grey.png';
 
@@ -64,6 +65,14 @@ const Navbar: FunctionComponent<NavBarProps> = React.memo(({ setIsDarkMode, isDa
             setIsDarkMode={setIsDarkMode}
             isDarkMode={isDarkMode}
           />
+          <Switch
+            checked={isDarkMode}
+            onChange={() => {
+              setIsDarkMode(!isDarkMode);
+            }}
+            color="primary"
+          />
+
           <DarkModeButton
             value={isDarkMode}
             selected={isDarkMode}

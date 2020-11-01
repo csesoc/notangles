@@ -77,7 +77,7 @@ const DisplayOptions: FunctionComponent<DisplayOptionsProps> = React.memo((
         <List>
 
           <ListItem key="dark mode">
-            <Box flexGrow={1}> Dark mode </Box>
+            <Box> Dark mode </Box>
 
             <Switch
               checked={isDarkMode}
