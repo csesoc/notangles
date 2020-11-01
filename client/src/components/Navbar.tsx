@@ -12,6 +12,7 @@ import Brightness2Icon from '@material-ui/icons/Brightness2';
 import Tooltip from '@material-ui/core/Tooltip';
 import Link from '@material-ui/core/Link';
 import About from './About';
+import DisplayOptions from './DisplayOptions';
 
 import CSESocLogo from '../assets/notangles_one_n_with_grey.png';
 
@@ -59,7 +60,10 @@ const Navbar: FunctionComponent<NavBarProps> = React.memo(({ setIsDarkMode, isDa
           <NavbarTitle variant="h6">
             Notangles
           </NavbarTitle>
-
+          <DisplayOptions
+            setIsDarkMode={setIsDarkMode}
+            isDarkMode={isDarkMode}
+          />
           <DarkModeButton
             value={isDarkMode}
             selected={isDarkMode}
