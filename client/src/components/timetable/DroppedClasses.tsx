@@ -82,12 +82,12 @@ const StyledCourseClass = styled.div<{
     classTransformStyle(cardData, earliestStartTime, days, y)
   )};
   transition: ${defaultTransition};
-  
+
   // position over timetable borders
   position: relative;
   width:  calc(100% + ${1 / devicePixelRatio}px);
   height: ${({ cardData }) => classHeight(cardData)};
-  
+
   padding: ${classMargin}px;
   padding-right:  ${classMargin + 1 / devicePixelRatio}px;
   padding-bottom: ${classMargin + 1 / devicePixelRatio}px;
@@ -168,6 +168,7 @@ interface DroppedClassProps {
   y?: number
   earliestStartTime: number
   hasClash: boolean
+  isCompactMode: boolean
 }
 
 const DroppedClass: FunctionComponent<DroppedClassProps> = React.memo(({
@@ -177,6 +178,7 @@ const DroppedClass: FunctionComponent<DroppedClassProps> = React.memo(({
   y,
   earliestStartTime,
   hasClash,
+  isCompactMode,
 }) => {
   const element = useRef<HTMLDivElement>(null);
 
@@ -186,6 +188,10 @@ const DroppedClass: FunctionComponent<DroppedClassProps> = React.memo(({
       if (element.current) unregisterCard(cardData, element.current);
     };
   });
+
+  useEffect(() => {
+
+  }, [isCompactMode]);
 
   const onDown = (event: any) => {
     setDragTarget(cardData, event);
@@ -223,7 +229,7 @@ const DroppedClass: FunctionComponent<DroppedClassProps> = React.memo(({
             {cardData.class.activity}
           </b>
         </p>
-        {isPeriod(cardData) && (
+        {isPeriod(cardData) && !isCompactMode && (
           <>
             <p style={pStyle}>
               <PeopleAltIcon fontSize="inherit" style={iconStyle} />
@@ -269,6 +275,7 @@ interface DroppedClassesProps {
   assignedColors: Record<string, string>
   days: string[]
   clashes: Array<ClassPeriod>
+  isCompactMode: boolean
 }
 
 const DroppedClasses: FunctionComponent<DroppedClassesProps> = ({
@@ -277,6 +284,7 @@ const DroppedClasses: FunctionComponent<DroppedClassesProps> = ({
   assignedColors,
   days,
   clashes,
+  isCompactMode,
 }) => {
   const droppedClasses: JSX.Element[] = [];
   const prevCards = useRef<CardData[]>([]);
@@ -345,6 +353,7 @@ const DroppedClasses: FunctionComponent<DroppedClassesProps> = ({
         y={!isPeriod(cardData) ? inventoryCards.current.indexOf(cardData) : undefined}
         earliestStartTime={earliestStartTime}
         hasClash={isPeriod(cardData) ? clashes.includes(cardData) : false}
+        isCompactMode={isCompactMode}
       />,
     );
 

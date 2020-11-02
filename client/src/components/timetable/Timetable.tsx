@@ -27,6 +27,7 @@ interface TimetableProps {
   selectedClasses: SelectedClasses
   assignedColors: Record<string, string>
   is12HourMode: boolean
+  isCompactMode: boolean
   setIs12HourMode(value: boolean): void
   clashes: Array<ClassPeriod>
 }
@@ -36,6 +37,7 @@ const Timetable: FunctionComponent<TimetableProps> = React.memo(({
   selectedClasses,
   assignedColors,
   is12HourMode,
+  isCompactMode,
   setIs12HourMode,
   clashes,
 }) => (
@@ -65,6 +67,7 @@ const Timetable: FunctionComponent<TimetableProps> = React.memo(({
       assignedColors={assignedColors}
       days={days}
       clashes={clashes}
+      isCompactMode={isCompactMode}
     />
   </StyledTimetable>
 ), (prev, next) => !(

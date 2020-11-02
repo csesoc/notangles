@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import Box from '@material-ui/core/Box';
@@ -17,6 +17,10 @@ const DropdownButton = styled(Button)`
     text-transform: none;
 `;
 
+const StyledOptionLabel = styled(Box)`
+ margin-right:40px;
+`;
+
 
 interface DropdownOptionProps {
   optionName: string
@@ -28,11 +32,20 @@ interface DropdownOptionProps {
 
 interface DisplayOptionsProps {
   setIsDarkMode(mode: boolean): void,
-  isDarkMode: boolean
+  isDarkMode: boolean,
+  setIs12HourMode(mode: boolean): void,
+  is12HourMode: boolean,
+  setIsCompactMode(mode: boolean): void,
+  isCompactMode: boolean,
 }
-const DisplayOptions: FunctionComponent<DisplayOptionsProps> = React.memo((
-  { setIsDarkMode, isDarkMode },
-) => {
+const DisplayOptions: React.FC<DisplayOptionsProps> = ({
+  setIsDarkMode,
+  isDarkMode,
+  is12HourMode,
+  setIs12HourMode,
+  isCompactMode,
+  setIsCompactMode,
+}) => {
   // for opening popover
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const handleClose = () => {
@@ -44,11 +57,6 @@ const DisplayOptions: FunctionComponent<DisplayOptionsProps> = React.memo((
     // execute autotimetabling
     setAnchorEl(event.currentTarget);
   };
-
-  const handleChange = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
 
   return (
     <div>
@@ -77,19 +85,43 @@ const DisplayOptions: FunctionComponent<DisplayOptionsProps> = React.memo((
         <List>
 
           <ListItem key="dark mode">
-            <Box> Dark mode </Box>
-
+            <StyledOptionLabel flexGrow={1}> Dark mode </StyledOptionLabel>
             <Switch
               checked={isDarkMode}
-              onChange={handleChange}
+              onChange={() => {
+                setIsDarkMode(!isDarkMode);
+              }}
               color="primary"
             />
+          </ListItem>
 
+
+          <ListItem key="dark mode">
+            <StyledOptionLabel flexGrow={1}> 24-hour time </StyledOptionLabel>
+            <Switch
+              checked={!is12HourMode}
+              onChange={() => {
+                setIs12HourMode(!is12HourMode);
+              }}
+              color="primary"
+            />
+          </ListItem>
+
+
+          <ListItem key="dark mode">
+            <StyledOptionLabel flexGrow={1}> Compact mode </StyledOptionLabel>
+            <Switch
+              checked={isCompactMode}
+              onChange={() => {
+                setIsCompactMode(!isCompactMode);
+              }}
+              color="primary"
+            />
           </ListItem>
 
         </List>
       </Popover>
     </div>
   );
-});
+};
 export default DisplayOptions;

@@ -67,6 +67,7 @@ const App: FunctionComponent = () => {
   const [selectedClasses, setSelectedClasses] = useState<SelectedClasses>({});
   const [is12HourMode, setIs12HourMode] = useState<boolean>(storage.get('is12HourMode'));
   const [isDarkMode, setIsDarkMode] = useState<boolean>(storage.get('isDarkMode'));
+  const [isCompactMode, setIsCompactMode] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<String>('');
   const [errorVisibility, setErrorVisibility] = useState<boolean>(false);
 
@@ -185,6 +186,10 @@ const App: FunctionComponent = () => {
           <Navbar
             setIsDarkMode={setIsDarkMode}
             isDarkMode={isDarkMode}
+            is12HourMode={is12HourMode}
+            setIs12HourMode={setIs12HourMode}
+            isCompactMode={isCompactMode}
+            setIsCompactMode={setIsCompactMode}
           />
           <ContentWrapper>
             <Content>
@@ -211,6 +216,7 @@ const App: FunctionComponent = () => {
                 assignedColors={assignedColors}
                 is12HourMode={is12HourMode}
                 setIs12HourMode={setIs12HourMode}
+                isCompactMode={isCompactMode}
                 clashes={checkClashes()}
               />
               <Footer>

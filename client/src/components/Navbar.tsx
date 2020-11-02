@@ -11,9 +11,9 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
 import Tooltip from '@material-ui/core/Tooltip';
 import Link from '@material-ui/core/Link';
+import Switch from '@material-ui/core/Switch';
 import About from './About';
 import DisplayOptions from './DisplayOptions';
-import Switch from '@material-ui/core/Switch';
 
 import CSESocLogo from '../assets/notangles_one_n_with_grey.png';
 
@@ -48,10 +48,21 @@ const NavButton = styled(Button)`
 
 interface NavBarProps {
   setIsDarkMode(mode: boolean): void,
-  isDarkMode: boolean
+  isDarkMode: boolean,
+  setIs12HourMode(mode: boolean): void,
+  is12HourMode: boolean,
+  setIsCompactMode(mode: boolean): void,
+  isCompactMode: boolean,
 }
 
-const Navbar: FunctionComponent<NavBarProps> = React.memo(({ setIsDarkMode, isDarkMode }) => (
+const Navbar: FunctionComponent<NavBarProps> = React.memo(({
+  setIsDarkMode,
+  isDarkMode,
+  is12HourMode,
+  setIs12HourMode,
+  isCompactMode,
+  setIsCompactMode,
+}) => (
   <StylesProvider injectFirst>
     <NavbarBox>
       <StyledNavBar>
@@ -64,13 +75,16 @@ const Navbar: FunctionComponent<NavBarProps> = React.memo(({ setIsDarkMode, isDa
           <DisplayOptions
             setIsDarkMode={setIsDarkMode}
             isDarkMode={isDarkMode}
+            is12HourMode={is12HourMode}
+            setIs12HourMode={setIs12HourMode}
+            isCompactMode={isCompactMode}
+            setIsCompactMode={setIsCompactMode}
           />
           <Switch
             checked={isDarkMode}
             onChange={() => {
               setIsDarkMode(!isDarkMode);
             }}
-            color="primary"
           />
 
           <DarkModeButton
