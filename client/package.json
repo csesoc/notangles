@@ -11,14 +11,10 @@
     "@types/jest": "24.0.13",
     "@types/node": "12.0.8",
     "@types/react": "16.8.19",
-    "@types/react-beautiful-dnd": "^11.0.2",
     "@types/react-dom": "16.8.4",
     "@types/react-transition-group": "^1.1.6",
-    "@typescript-eslint/parser": "^2.34.0",
     "fuse.js": "^6.4.0",
-    "husky": "^4.2.5",
     "react": "^16.8.6",
-    "react-beautiful-dnd": "^11.0.4",
     "react-dnd": "^9.4.0",
     "react-dnd-html5-backend": "^9.4.0",
     "react-dom": "^16.8.6",
@@ -54,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@typescript-eslint/parser": "^2.34.0",
     "@types/react-router-dom": "^5.1.6",
     "@types/styled-components": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
@@ -61,7 +58,8 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.3",
-    "eslint-plugin-react-hooks": "^2.5.1"
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "husky": "^4.2.5"
   },
   "husky": {
     "hooks": {

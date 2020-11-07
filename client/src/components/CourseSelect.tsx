@@ -282,7 +282,6 @@ const CourseSelect: React.FC<CourseSelectProps> = React.memo(({
         inputValue={inputValue}
         // prevent built-in option filtering
         filterOptions={(o) => o}
-
         renderOption={(option) => (
           <StyledOption>
             <StyledIcon>
@@ -296,7 +295,6 @@ const CourseSelect: React.FC<CourseSelectProps> = React.memo(({
             <Weak>{option.name}</Weak>
           </StyledOption>
         )}
-
         renderInput={(params) => (
           <StyledTextField
             {...params}
@@ -329,7 +327,6 @@ const CourseSelect: React.FC<CourseSelectProps> = React.memo(({
             }}
           />
         )}
-
         renderTags={(value: CoursesList, getTagProps) => (
           value.map((option: CourseOverview, index: number) => (
             <StyledChip
