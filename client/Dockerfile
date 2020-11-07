@@ -5,16 +5,16 @@ FROM node:latest
 WORKDIR /server
 
 # Copy packages.json and package-lock.json into the container
-COPY package.json package-lock.json ./
+COPY package.json yarn.lock ./
 
 # Install node modules inside the container using the copied package.json
-RUN npm install
+RUN yarn install
 
 # Copy the entire project into the container
 COPY . .
 
 # Build server and install npm serve
-RUN npm run build
+RUN yarn build
 RUN npm install -g serve
 
 EXPOSE 3000
