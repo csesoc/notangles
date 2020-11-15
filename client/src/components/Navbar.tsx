@@ -11,7 +11,6 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
 import Tooltip from '@material-ui/core/Tooltip';
 import Link from '@material-ui/core/Link';
-import Switch from '@material-ui/core/Switch';
 import About from './About';
 import DisplayOptions from './DisplayOptions';
 
@@ -79,12 +78,6 @@ const Navbar: FunctionComponent<NavBarProps> = React.memo(({
             setIs12HourMode={setIs12HourMode}
             isCompactMode={isCompactMode}
             setIsCompactMode={setIsCompactMode}
-          />
-          <Switch
-            checked={isDarkMode}
-            onChange={() => {
-              setIsDarkMode(!isDarkMode);
-            }}
           />
 
           <DarkModeButton
