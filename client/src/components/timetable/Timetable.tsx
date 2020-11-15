@@ -32,7 +32,7 @@ interface TimetableProps {
   clashes: Array<ClassPeriod>
 }
 
-const Timetable: FunctionComponent<TimetableProps> = React.memo(({
+const Timetable: FunctionComponent<TimetableProps> = ({
   selectedCourses,
   selectedClasses,
   assignedColors,
@@ -70,12 +70,6 @@ const Timetable: FunctionComponent<TimetableProps> = React.memo(({
       isCompactMode={isCompactMode}
     />
   </StyledTimetable>
-), (prev, next) => !(
-  prev.is12HourMode !== next.is12HourMode
-  || prev.selectedClasses !== next.selectedClasses
-  || prev.selectedCourses.length !== next.selectedCourses.length
-  || prev.selectedCourses.some((course, i) => course.code !== next.selectedCourses[i].code)
-  || JSON.stringify(prev.assignedColors) !== JSON.stringify(next.assignedColors)
-));
+);
 
 export default Timetable;

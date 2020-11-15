@@ -171,7 +171,7 @@ interface DroppedClassProps {
   isCompactMode: boolean
 }
 
-const DroppedClass: FunctionComponent<DroppedClassProps> = React.memo(({
+const DroppedClass: FunctionComponent<DroppedClassProps> = ({
   cardData,
   color,
   days,
@@ -263,7 +263,7 @@ const DroppedClass: FunctionComponent<DroppedClassProps> = React.memo(({
       </Card>
     </StyledCourseClass>
   );
-});
+};
 
 const getInventoryPeriod = (courses: CourseData[], courseCode: string, activity: string) => (
   courses.find((course) => course.code === courseCode)?.inventoryData[activity]
