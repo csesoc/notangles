@@ -23,8 +23,10 @@ export const getCourseList = async (req: Request, res: Response) => {
       dbName : year,
       termColName : term
     }
+    console.log("Hi")
     const list = await Database.dbFetchAll(args)
     if (list) {
+
       res.send(JSON.stringify(list))
     } else {
       console.error('Db fetch returned null ' + util.inspect(params))
