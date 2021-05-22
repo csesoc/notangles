@@ -1,8 +1,12 @@
 import * as express from 'express'
 import * as indexController from './index'
 import { getCourse, getCourseList } from './controllers/index'
+import { autoTimetable } from './controllers/autoTimetable'
 
 const app = express()
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 /**
  * Express configuration
@@ -24,5 +28,6 @@ app.use((req, res, next) => {
 app.get('/', indexController.index)
 app.get('/api/terms/:termId/courses/:courseId', getCourse)
 app.get('/api/terms/:termId/courses', getCourseList)
+app.post('/api/auto', autoTimetable)
 
 export default app

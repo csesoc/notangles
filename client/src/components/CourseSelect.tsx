@@ -48,7 +48,7 @@ const searchOptions: SearchOptions = {
   ],
 };
 
-let fuzzy = new Fuse<CourseOverview, SearchOptions>([], searchOptions);
+let fuzzy = new Fuse<CourseOverview, any>([], searchOptions);
 
 const StyledSelect = styled(Box)`
   width: 100%;

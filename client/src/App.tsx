@@ -27,6 +27,7 @@ import storage from './utils/storage';
 import { darkTheme, lightTheme, ThemeType } from './constants/theme';
 import { year, term } from './constants/timetable';
 import NetworkError from './interfaces/NetworkError';
+import autoTimetable from './api/autoTimetable';
 
 const IS_PREVIEW = process.env.REACT_APP_SHOW_PREVIEW === 'true';
 
@@ -159,7 +160,7 @@ const App: FunctionComponent = () => {
       && period1.start < period2.end
     ) || (
       period2.end > period1.start
-      && period2.start < period1.end
+        && period2.start < period1.end
     ))
   );
 
@@ -230,6 +231,16 @@ const App: FunctionComponent = () => {
     setErrorVisibility(false);
   };
 
+  const auto = async () => {
+    const newClasses = await autoTimetable(selectedClasses, selectedCourses, {});
+    setSelectedClasses((prev) => {
+      prev = { ...prev };
+      newClasses.forEach((classData) => {
+        prev[classData.course.code][classData.activity] = classData;
+      });
+      return prev;
+    });
+  };
   const handleSetIsLoggedIn = (value: boolean) => {
     setIsLoggedIn(value);
   };
@@ -328,7 +339,10 @@ const App: FunctionComponent = () => {
                   </SelectWrapper>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                  <Autotimetabler isDarkMode={isDarkMode} />
+                  <Autotimetabler
+                    isDarkMode={isDarkMode}
+                    auto={auto}
+                  />
                 </Grid>
               </Grid>
               <Timetable

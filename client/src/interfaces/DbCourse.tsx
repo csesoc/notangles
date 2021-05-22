@@ -12,6 +12,7 @@ export interface DbClass {
   activity: string
   times: DbTimes[]
   courseEnrolment: DbCourseEnrolment
+  classID: number
 }
 
 export interface DbCourseEnrolment {
@@ -106,6 +107,7 @@ export const dbCourseToCourseData = (dbCourse: DbCourse): CourseData => {
   dbCourse.classes.forEach((dbClass, index) => {
     const classData: ClassData = {
       id: `${dbCourse.courseCode}-${dbClass.activity}-${index}`,
+      classId: dbClass.classID,
       course: courseData,
       activity: dbClass.activity,
       periods: [],
