@@ -5,6 +5,70 @@ import { getLocation } from './TimeHelpers/GetLocation'
 import { getWeeks } from './TimeHelpers/GetWeeks'
 import { getInstructor } from './TimeHelpers/GetInstructor'
 
+/**
+ * Compares two class times.
+ * @param { Time } date1:
+ * @param { Time } date2: time data to be compared
+ */
+const areTimesEqual = ({
+  date1,
+  date2,
+}: {
+  date1: Time
+  date2: Time
+}): [boolean, Time | null] => {
+  // Should never happen
+  if (!date1 || !date2) {
+    if (date1) {
+      return [false, date1]
+    }
+    return [false, date2]
+  }
+  let trueDate = date1
+
+  for (const prop in date1) {
+    if (!date1[prop]) {
+      trueDate = date2
+      continue
+    } else if (!date2[prop]) {
+      continue
+    } else if (JSON.stringify(date1[prop]) !== JSON.stringify(date2[prop])) {
+      return [false, trueDate]
+    }
+  }
+  return [true, trueDate]
+}
+
+/**
+ * De-duplicates the times of a class
+ * Duplicates are: two times which have all the same values,
+ * if values don't exist then they are ignored
+ * @param { Time[] } dateList: List of class times
+ */
+const dedupTimes = (dateList: Time[]): Time[] => {
+  if (!dateList) {
+    return []
+  }
+  const uniqueDates: Time[] = [dateList[0]]
+  for (const date of dateList) {
+    const len = uniqueDates.length
+    for (let i = 0; i < len; i++) {
+      const uniqueDate = uniqueDates?.pop() || null
+      const [equal, trueDate] = areTimesEqual({
+        date1: date,
+        date2: uniqueDate,
+      })
+      if (!equal) {
+        uniqueDates.push(trueDate)
+      }
+      if (trueDate) {
+        uniqueDates.push(trueDate)
+      }
+    }
+  }
+  return [...uniqueDates]
+}
+
 interface GetTimeDataParams {
   data: string[]
   index: number
@@ -81,7 +145,7 @@ const getTimeData = ({
     }
   }
 
-  return { dateList, timeDataWarnings }
+  return { dateList: dedupTimes(dateList), timeDataWarnings }
 }
 
 export { getTimeData }
