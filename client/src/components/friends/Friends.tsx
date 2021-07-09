@@ -22,9 +22,9 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
 import ProfileSettings from './ProfileSettings';
 import storage from '../../utils/storage';
+import LoggedOutImg from '../../assets/sidebar_cat.svg';
 
 export const drawerWidth = process.env.REACT_APP_SHOW_PREVIEW === 'true' ? 240 : 0;
-const loggedOutImgUrl = 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/739a0188-3fa1-4c9c-be25-fe0e3690300d/d9hzoc1-2967e7dd-8047-43f5-900f-cc6fb991bf10.png/v1/fill/w_1121,h_713,strp/neko_atsume___tubbs_cat_vector_by_elexisheaven_d9hzoc1-pre.png';
 
 const StyledDrawer = styled(Drawer)`
     width: drawerWidth;
@@ -312,7 +312,7 @@ const FriendsDrawer: React.FC<FriendsProps> = ({
           </>
         ) : (
           <LoginComponent>
-            <img src={loggedOutImgUrl} alt="You are logged out!" width="100" />
+            <img src={LoggedOutImg} alt="You are logged out!" width="132" />
             <h3> Log In to Notangles! </h3>
             <p>
               Add friends on Notangles to view each other&apos;s timetables,
